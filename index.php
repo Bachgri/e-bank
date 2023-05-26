@@ -1,6 +1,6 @@
 <?php
 if (isset($_COOKIE['userId'])) {
-    include("./Views/menuprincipal.php");
+    include("./menuprincipal.php");
 } else {
-    include("./Inc/auth/authForm.html.php");
+    include("./authForm.html.php");
 }

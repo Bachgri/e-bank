@@ -4,7 +4,7 @@
 
 <head>
   <title>Ma Page</title>
-  <link rel="stylesheet" href="../public/css/menuprincip.css">
+  <link rel="stylesheet" href="./public/css/menuprincip.css">
   <style>
 
   </style>

@@ -6,7 +6,7 @@ session_start();
 
 <head>
   <title>Ma Page</title>
-  <link rel="stylesheet" href="../public/css/page1GCC.css">
+  <link rel="stylesheet" href="./public/css/page1GCC.css">
 </head>
 
 <body>

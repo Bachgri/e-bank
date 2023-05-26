@@ -29,7 +29,7 @@ if ($data) {
   $_SESSION['nomuser'] = $data[2];
   $_SESSION['libelrole'] = $data[8];
   //var_dump($_COOKIE['libelrole']);
-  header('location:../../Views/menuprincipal.php');
+  header('location:../../menuprincipal.php');
 } else {
   session_start();
   //$_COOKIE['error'] = "Invalid username or password";
