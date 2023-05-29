@@ -28,7 +28,7 @@ session_start();
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
       <a href="./rechercheclient.html.php">Création client / compte</a>
-      <a href="#">Mise à jour</a>
+      <a href="./recherchepourmaj.html.php">Mise à jour</a>
       <a href="#">Consultation</a>
     </div>
   </div>
