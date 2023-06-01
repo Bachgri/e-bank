@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2023 at 12:50 AM
+-- Generation Time: Jun 02, 2023 at 12:14 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -91,17 +91,20 @@ CREATE TABLE `clients` (
   `dnaissance` date NOT NULL,
   `lnaissance` char(11) NOT NULL,
   `ngsm` int(11) NOT NULL,
-  `email` varchar(25) NOT NULL
+  `email` varchar(25) NOT NULL,
+  `idcc` int(11) NOT NULL,
+  `idtype` varchar(10) NOT NULL,
+  `idsj` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`numclt`, `nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `ngsm`, `email`) VALUES
-(1023456, 'ALi', 'LACHGAR', 'C_753', 'HAMMOU', 'Kenza ELYAKOUTI', 'Masculin', 'célibataire', '2000-05-08', 'Rabat', 658126935, 'alielhachimi@gmail.com'),
-(1023457, 'oualid', 'lachgar', 'PA253', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com'),
-(1023460, 'oualid', 'lachgar', 'PA2535491', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com');
+INSERT INTO `clients` (`numclt`, `nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `ngsm`, `email`, `idcc`, `idtype`, `idsj`) VALUES
+(1023456, 'ALi', 'LACHGAR', 'C_753', 'HAMMOU', 'Kenza ELYAKOUTI', 'Masculin', 'célibataire', '2000-05-08', 'Rabat', 658126935, 'alielhachimi@gmail.com', 2, 'A_120', 3),
+(1023457, 'oualid', 'lachgar', 'PA253', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com', 0, '', 0),
+(1023460, 'oualid', 'lachgar', 'PA2535491', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com', 0, '', 0);
 
 -- --------------------------------------------------------
 
