@@ -94,30 +94,6 @@ $u = null;
             <input id="idValue" type="text" name="numid" value="<?php if (isset($_POST['numid'])) echo $_POST['numid']; ?>">
         </div><br>
 
-        <div class="search-table-row">
-            <label for="listeCtrRC">Centre RC</label>
-            <select id="listeCtrRC" name="listeCtrRC">
-                <option value="option1">_ _ _ selectionnez _ _ _</option>
-                <option value="option2">rabat</option>
-                <option value="option2">casablanca</option>
-            </select>
-            <label for="rtpnumid">Retaper numéro identifiant</label>
-            <input type="text" name="rtpnumid">
-        </div><br>
-
-        <div class="search-table-row">
-            <label for="nomrs">Nom/Raison social</label>
-            <input type="text" name="nomrs">
-            <label for="daten">Date de naissance</label>
-            <input type="Date" name="daten">
-        </div><br>
-
-        <div class="search-table-row">
-            <label for="numclt">N°Client</label>
-            <input type="text" name="numclt">
-            <label for="Prénom">Prénom</label>
-            <input type="text" name="Prénom">
-        </div><br>
 
         <script>
             function changeListeType() {
@@ -166,7 +142,10 @@ $u = null;
 
         <br><br>
         <div style="background-color: #E8ECEC ; padding: 0.01px;">
-            <p style="color: white;"><input type="submit" value="recherche" name="recherche" placeholder="Recherche">&nbsp;<input type="submit" value="Annuler">&nbsp;<input type="submit" value="Quiter"></p>
+            <p style="color: white;"><input type="submit" value="recherche" name="recherche" placeholder="Recherche">
+                &nbsp;<input type="submit" value="Annuler">&nbsp;
+                <button> <a href="./page1GCC.php">Quiter</a> </button>
+            </p>
         </div>
         <table border="2">
             <tr>

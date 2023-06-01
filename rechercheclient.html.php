@@ -76,7 +76,7 @@ $u = null;
     </div><br>
 
     <div class="search-table-row">
-      <label for="listetypeidL" style="display: none;">Type identifiant</label>
+      <label id="listetypeidL" for="listetypeidL" style="display: none;">Type identifiant</label>
       <select id="listetypeid" name="listetypeid" style="display: none;">
         <option value="0">_ _ _ selectionnez _ _ _</option>
         <option value="1">CIN</option>
@@ -94,30 +94,7 @@ $u = null;
       <input id="idValue" type="text" name="numid" value="<?php if (isset($_POST['numid'])) echo $_POST['numid']; ?>">
     </div><br>
 
-    <div class="search-table-row">
-      <label for="listeCtrRC">Centre RC</label>
-      <select id="listeCtrRC" name="listeCtrRC">
-        <option value="option1">_ _ _ selectionnez _ _ _</option>
-        <option value="option2">rabat</option>
-        <option value="option2">casablanca</option>
-      </select>
-      <label for="rtpnumid">Retaper numéro identifiant</label>
-      <input type="text" name="rtpnumid">
-    </div><br>
 
-    <div class="search-table-row">
-      <label for="nomrs">Nom/Raison social</label>
-      <input type="text" name="nomrs">
-      <label for="daten">Date de naissance</label>
-      <input type="Date" name="daten">
-    </div><br>
-
-    <div class="search-table-row">
-      <label for="numclt">N°Client</label>
-      <input type="text" name="numclt">
-      <label for="Prénom">Prénom</label>
-      <input type="text" name="Prénom">
-    </div><br>
 
     <script>
       function changeListeType() {
@@ -136,8 +113,10 @@ $u = null;
           document.getElementById('listefjL').style.display = 'none';
           document.getElementById('listefj1').style.display = 'none';
           document.getElementById('listefj1L').style.display = 'none';
-          document.getElementById('listetypeid1L').style.display = 'inline';
-          document.getElementById('listetypeid1').style.display = 'inline';
+          document.getElementById('listetypeid1L').style.display = 'none';
+          document.getElementById('listetypeid1').style.display = 'none';
+          document.getElementById('listetypeid').style.display = 'inline';
+          document.getElementById('listetypeidL').style.display = 'inline';
 
         } else if (selectedCatClt === "2") {
           // Afficher la liste de forme juridique 1 
@@ -151,6 +130,9 @@ $u = null;
           document.getElementById('listetypeid1L').style.display = 'inline';
           document.getElementById('listetypeid1').style.display = 'inline';
 
+          document.getElementById('listetypeid').style.display = 'none';
+          document.getElementById('listetypeidL').style.display = 'none';
+
         } else if (selectedCatClt === "4") {
           document.getElementById('listetypeclt').style.display = 'none';
           document.getElementById('listetypecltL').style.display = 'none';
@@ -160,13 +142,19 @@ $u = null;
           document.getElementById('listefj1L').style.display = 'inline';
           document.getElementById('listetypeid1L').style.display = 'inline';
           document.getElementById('listetypeid1').style.display = 'inline';
+
+          document.getElementById('listetypeid').style.display = 'none';
+          document.getElementById('listetypeidL').style.display = 'none';
         }
       }
     </script>
 
     <br><br>
     <div style="background-color: #E8ECEC ; padding: 0.01px;">
-      <p style="color: white;"><input type="submit" value="recherche" name="recherche" placeholder="Recherche">&nbsp;<input type="submit" value="Annuler">&nbsp;<input type="submit" value="Quiter"></p>
+      <p style="color: white;"><input type="submit" value="recherche" name="recherche" placeholder="Recherche">&nbsp;
+        <input type="submit" value="Annuler">
+        &nbsp;<button> <a href="./page1GCC.php">Quiter</a> </button>
+      </p>
     </div>
     <table border="2">
       <tr>
@@ -195,23 +183,23 @@ $u = null;
               <td><?php echo $numId ?></td>
               <td><?php if ($numClt != null) echo '<a href="./affichecltcmpt.html.php">Afficher</a>'; ?></td>
             </tr>
-          <?php
+    </table>
+    <a href="./createClientMineur.php">Cree un client Mineur</a>
+  <?php
           } else {
-          ?>
-            <tr>
-              <td colspan="3">
-                <a href="./createClient.php">client n'existe pas, cliquer pour en créé un </a>
-              </td>
-            </tr>
+  ?>
+    </table>
+    <a href="./createClient.php">client n'existe pas, cliquer pour en créé un </a>
 
-      <?php
+
+<?php
           }
         }
       }
-      ?>
+?>
 
 
-    </table>
+</table>
   </form>
 </body>
 

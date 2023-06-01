@@ -60,10 +60,13 @@ $nident = '';
     $nident = $_POST['nident'];
     $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `n°gsm`, `email`) 
             VALUES ('$nom','$prenom','$nident','$pprenom','$pnom','$sexe','$sitfam','$ddn','$ldn','$gsm','$email')";
-    // echo $sql;
+    echo $sql;
     $rep = mysqli_query($connect, $sql);
+
     if ($rep) {
       echo "client added succefylly.";
+    } else {
+      echo "erreur " . $rep;
     }
   }
   ?>

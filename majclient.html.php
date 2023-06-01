@@ -13,13 +13,18 @@ $prenom = '';
 $pnom = '';
 $pprenom = '';
 $typeident = '';
+$typeclient = '';
 $ddn = '';
 $sexe = '';
 $sitfam = '';
 $ldn = '';
 $gsm = '';
 $email = '';
-$sql = "SELECT * FROM `clients` where 	numidentifiant = '$nident' limit 1";
+$sql = "SELECT * FROM `clients` 
+join `categorie_client` on idcc = codcatcl 
+join `type_client` on idtype = codtypcl
+join `situation_juridique` on codsitju = idsj
+where numidentifiant = '$nident' limit 1";
 $rep = mysqli_query($connect, $sql);
 if ($rep) {
     if ($row = $rep->fetch_assoc()) {
@@ -34,6 +39,7 @@ if ($rep) {
         $ldn = $row['lnaissance'];
         $gsm = $row['ngsm'];
         $email = $row['email'];
+        $typeclient = $row['libcatcl'];
     }
 }
 
@@ -45,7 +51,7 @@ if ($rep) {
         <img src="logo.png" alt="Ebank" class="logo">
     </header>
 
-    <h4><u>Personne physique / Entrepreneur individuel :</u></h4>
+    <h4><u> <?php echo $typeclient; ?> : </u></h4>
     <?php
     if (
         isset($_POST['insert']) &&
@@ -93,48 +99,85 @@ if ($rep) {
         }
     }
     ?>
-    <form method="post" action="">
-        <label for="nom">Nom:</label>
-        <input type="text" id="nom" name="nom" value='<?php echo $nom; ?>' required><br>
-        <label for="nom">Prenom:</label>
-        <input type="text" id="Prenom" name="Prenom" value='<?php echo $prenom; ?>' required><br>
-        <label for="nom">Prenom du père:</label>
-        <input type="text" id="Prenom du père" name="pprenom" value='<?php echo $pnom; ?>' required><br>
-        <label for="nomprenom">Nom et prenom du mère:</label>
-        <input type="text" id="nomprenom" name="nomprenom" value='<?php echo $pprenom; ?>' required><br>
-        <label for="Type identité">Type identité:</label>
-        <select id="Type identité" name="typeident">
-            <option value="CIN">CIN</option>
-            <option value="Carte de passport">Carte de passport</option>
-            <option value="Carte de séjour">Carte de séjour</option>
-        </select><br>
-        <label for="nident">N° identifiant :</label>
-        <input type="text" id="nident" name="nident" value='<?php echo $nident; ?>' required><br>
-        <label for="sexe">Sexe:</label>
-        <select id="sexe" name="sexe">
-            <option value="Masculin">Masculin</option>
-            <option value="Féminin">Féminin</option>
-        </select>
-        <br>
-        <label for="Situationf">Situation familiale :</label>
-        <select id="Situationf" name="Situationf">
-            <option value="célibataire">Célibataire</option>
-            <option value="marié">Marié</option>
-            <option value="divorcé">Divorcé</option>
-        </select><br>
-        <label for="date">Date de naissance :</label>
-        <input type="Date" id="date" name="ddn" value='<?php echo $ddn; ?>' required><br>
-        <label for="lieu">Lieu de naissance :</label>
-        <input type="text" id="lieu" name="ldn" value='<?php echo $ldn; ?>' required><br>
+    <form method="post" action="" style="width: 100%; text-align: center;">
+        <table style="width: 60%;margin-left: 20%;text-align: left">
+            <tr>
+                <td><label for="nom">Nom:</label></td>
+                <td><input type="text" id="nom" name="nom" value="<?php echo $nom; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="Prenom">Prenom:</label></td>
+                <td><input type="text" id="Prenom" name="Prenom" value="<?php echo $prenom; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="Prenom_du_père">Prenom du père:</label></td>
+                <td><input type="text" id="Prenom_du_père" name="pprenom" value="<?php echo $pnom; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="nomprenom">Nom et prénom du mère:</label></td>
+                <td><input type="text" id="nomprenom" name="nomprenom" value="<?php echo $pprenom; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="Type_identité">Type identité:</label></td>
+                <td>
+                    <select id="Type_identité" name="typeident">
+                        <option value="CIN">CIN</option>
+                        <option value="Carte de passport">Carte de passport</option>
+                        <option value="Carte de séjour">Carte de séjour</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="nident">N° identifiant:</label></td>
+                <td><input type="text" id="nident" name="nident" value="<?php echo $nident; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="sexe">Sexe:</label></td>
+                <td>
+                    <select id="sexe" name="sexe">
+                        <option value="Masculin">Masculin</option>
+                        <option value="Féminin">Féminin</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Situationf">Situation familiale :</label></td>
+                <td>
+                    <select id="Situationf" name="Situationf">
+                        <option value="célibataire">Célibataire</option>
+                        <option value="marié">Marié</option>
+                        <option value="divorcé">Divorcé</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="date">Date de naissance :</label></td>
+                <td><input type="Date" id="date" name="ddn" value="<?php echo $ddn; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="lieu">Lieu de naissance :</label></td>
+                <td><input type="text" id="lieu" name="ldn" value="<?php echo $ldn; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="GSM">N°GSM :</label></td>
+                <td><input type="text" id="GSM" name="gsm" value="<?php echo $gsm; ?>" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Adresse e-Mail :</label></td>
+                <td><input type="text" id="email" name="email" value="<?php echo $email; ?>" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Valider" name="insert">
 
-        <label for="date">N°GSM :</label>
-        <input type="text" id="GSM" name="gsm" value='<?php echo $gsm; ?>' required><br>
-        <label for="date">Adresse e-Mail :</label>
-        <input type="text" id="email" name="email" value='<?php echo $email; ?>' required><br>
+                </td>
+                <td>
+                    <a type="submit" value="Quiter" name="quiter" href="./recherchepourmaj.html.php">Quiter</a>
 
-        <input type="submit" value="Valider" name="insert">
+                </td>
+            </tr>
+        </table>
     </form>
-
 </body>
 
 </html>
