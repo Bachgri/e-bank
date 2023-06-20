@@ -1,0 +1,14 @@
+body {
+    background-color: #FFFEAB ; 
+    color: #000000; 
+    font-family: Arial, sans-serif; }
+   .container {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+   
+  }
+  header {
+  background-color:#36859E  ;
+  color: #fff;
+  padding: 20px;

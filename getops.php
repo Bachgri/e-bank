@@ -27,9 +27,8 @@ session_start();
   <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-      <a href="./rechercheclient.html.php">Création client / compte</a>
-      <a href="./recherchepourmaj.html.php">Mise à jour</a>
-      <a href="./recherchecompte.html.php">Création compte</a>
+      <a href="./versement.html.php">Versement</a>
+      <a href="./validationversement.html.php">Validation d'un versement</a>
     </div>
   </div>
 

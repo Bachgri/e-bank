@@ -29,16 +29,19 @@
       </a>
     </div>
   </div><br><br>
-  <div class="dropdown">
-    <a href="./page1GCC.php">
-      <button class="dropbtn">Gestion clients / contrats</button>
-    </a>
-  </div>
-  <div class="dropdown">
-    <a href="">
-      <button class="dropbtn">Gestion des opérations</button>
-    </a>
-  </div>
+  <?php if ($_SESSION['libelrole'] == 'Chef agence') { ?>
+    <div class="dropdown">
+      <a href="./page1GCC.php">
+        <button class="dropbtn">Gestion clients / contrats</button>
+      </a>
+    </div>
+  <?php } else {  ?>
+    <div class="dropdown">
+      <a href="./getops.php">
+        <button class="dropbtn">Gestion des opérations</button>
+      </a>
+    </div>
+  <?php } ?>
 </body>
 
 </html>

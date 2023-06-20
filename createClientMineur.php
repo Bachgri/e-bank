@@ -32,19 +32,19 @@ $nident = $_SESSION['clientId']; //= $row['numidentifiant'];;
     <h4><u>Personne physique / Entrepreneur individuel :</u></h4>
     <?php
     if (
-        isset($_POST['insert']) &&
-        isset($_POST['nom']) &&
-        isset($_POST['Prenom']) &&
-        isset($_POST['pprenom']) &&
-        isset($_POST['nomprenom']) &&
-        isset($_POST['typeident']) &&
-        isset($_POST['nident']) &&
-        isset($_POST['sexe']) &&
-        isset($_POST['Situationf']) &&
-        isset($_POST['ddn']) &&
-        isset($_POST['ldn']) &&
-        isset($_POST['gsm']) &&
-        isset($_POST['email'])
+        isset($_POST['insert']) //&&
+        // isset($_POST['nom']) &&
+        // isset($_POST['Prenom']) &&
+        // isset($_POST['pprenom']) &&
+        // isset($_POST['nomprenom']) &&
+        // isset($_POST['typeident']) &&
+        // isset($_POST['nident']) &&
+        // isset($_POST['sexe']) &&
+        // isset($_POST['Situationf']) &&
+        // isset($_POST['ddn']) &&
+        // isset($_POST['ldn']) &&
+        // isset($_POST['gsm']) &&
+        // isset($_POST['email'])
     ) {
         $nom = $_POST['nom'];
         $prenom = $_POST['Prenom'];
@@ -57,10 +57,10 @@ $nident = $_SESSION['clientId']; //= $row['numidentifiant'];;
         $ldn = $_POST['ldn'];
         $gsm = $_POST['gsm'];
         $email = $_POST['email'];
-        $nident = $_POST['nident'];
-        $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `n°gsm`, `email`) 
+        //$nident = $_POST['nident'];
+        $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `ngsm`, `email`) 
             VALUES ('$nom','$prenom','$nident','$pprenom','$pnom','$sexe','$sitfam','$ddn','$ldn','$gsm','$email')";
-        echo $sql;
+        //echo $sql;
         $rep = mysqli_query($connect, $sql);
 
         if ($rep) {
@@ -68,9 +68,15 @@ $nident = $_SESSION['clientId']; //= $row['numidentifiant'];;
         } else {
             echo "erreur " . $rep;
         }
+    } else {
+
+        echo "field required";
+    }
+    if (isset($_POST['cancel'])) {
+        header("location:./rechercheclient.html.php");
     }
     ?>
-    <form method="post" action="">
+    <form method="POST">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" value='<?php echo $nom; ?>' required><br>
         <label for="nom">Prenom:</label>
@@ -110,6 +116,7 @@ $nident = $_SESSION['clientId']; //= $row['numidentifiant'];;
         <input type="text" id="email" name="email" value='<?php echo $email; ?>' required><br>
 
         <input type="submit" value="Valider" name="insert">
+        <input type="submit" value="Quitter" name="cancel">
     </form>
 
 </body>

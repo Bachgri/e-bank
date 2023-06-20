@@ -1,0 +1,63 @@
+body {
+    background-color: #FFFEAB ; 
+    color: #000000; 
+    font-family: Arial, sans-serif; }
+  .container {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+   
+  }
+  header {
+  background-color:#36859E  ;
+  color: #fff;
+  padding: 20px;
+
+  }
+    form {
+  margin: 0 auto;
+  width: 400px;
+}
+
+label {
+  display: block;
+  margin-top: 1px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 1px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"], button a {
+  margin-top: 5px;
+  padding: 5px 6px;
+  background-color:#36859E  ;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+        form {
+            width: 60%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 180px;
+            white-space: nowrap;
+        }

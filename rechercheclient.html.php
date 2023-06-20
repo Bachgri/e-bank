@@ -166,33 +166,38 @@ $u = null;
       <?php
       if (isset($_POST['recherche'])) {
         $numId = $_POST['numid'];
-        $sql = "SELECT * FROM `clients` where 	numidentifiant = '$numId' limit 1";
+        $sql = "SELECT * FROM `clients` WHERE numidentifiant = '$numId' ";
         $rep = mysqli_query($connect, $sql);
+
         if ($rep) {
-          if ($row = $rep->fetch_assoc()) {
-            $exist = true;
-            $numId = $row['numidentifiant'];
+          $numRows = mysqli_num_rows($rep);
 
-            $_SESSION['clientId'] = $row['numidentifiant'];
-            // setcookie("userid", $row['numidentifiant'], time() + (24 * 60));
-            $fname = $row['nom'] . " " . $row['perom'];
-            $numClt = $row['numclt']; ?>
-            <tr>
-              <td><?php echo $numClt ?></td>
-              <td><?php echo $fname ?></td>
-              <td><?php echo $numId ?></td>
-              <td><?php if ($numClt != null) echo '<a href="./affichecltcmpt.html.php">Afficher</a>'; ?></td>
-            </tr>
+          if ($numRows > 0) {
+            while ($row = $rep->fetch_assoc()) {
+              $exist = true;
+              $numId = $row['numidentifiant'];
+
+              $_SESSION['clientId'] = $row['numidentifiant'];
+              // setcookie("userid", $row['numidentifiant'], time() + (24 * 60));
+              $fname = $row['nom'] . " " . $row['perom'];
+              $numClt = $row['numclt'];
+              $idsj = $row['idsj'];
+      ?>
+              <tr>
+                <td><?php echo $numClt ?></td>
+                <td><?php echo $fname ?></td>
+                <td><?php echo $numId ?></td>
+                <td><?php if ($numClt != null) echo '<a href="./affichecltcmpt.html.php?sj=' . $idsj . '">Afficher</a>'; ?></td>
+              </tr>
+
+            <?php
+            } ?>
+
     </table>
-    <a href="./createClientMineur.php">Cree un client Mineur</a>
-  <?php
-          } else {
-  ?>
-    </table>
-    <a href="./createClient.php">client n'existe pas, cliquer pour en créé un </a>
+    <a href="./createClientMineur.php">Crée Client mineur</a>
+<?php } else {
+            // echo "Client n'existe pas, cliquez pour en créer un: <a href='./createClient.php'>Créer un client</a>";
 
-
-<?php
           }
         }
       }

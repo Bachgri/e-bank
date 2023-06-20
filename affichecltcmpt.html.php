@@ -16,11 +16,12 @@ include('./Inc/db/connexion.php') ?>
   </div>
   <?php
   $numId = $_SESSION['clientId'];
+  $idsj = $_GET['sj'];
   $sql = "SELECT * FROM `clients` 
             join `categorie_client` on idcc = codcatcl 
             join `type_client` on idtype = codtypcl
             join `situation_juridique` on codsitju = idsj
-          where numidentifiant = '$numId' limit 1 ";
+          where numidentifiant = '$numId' and idsj = $idsj";
   // echo $sql;
   // exit(0);
   $rep = mysqli_query($connect, $sql);
