@@ -121,6 +121,7 @@ if ($rep) {
                 <td><label for="Type_identité">Type identité:</label></td>
                 <td>
                     <select id="Type_identité" name="typeident">
+                        <option value="<?php echo $typeident ?>"><?php echo $typeident ?></option>
                         <option value="CIN">CIN</option>
                         <option value="Carte de passport">Carte de passport</option>
                         <option value="Carte de séjour">Carte de séjour</option>
@@ -135,6 +136,7 @@ if ($rep) {
                 <td><label for="sexe">Sexe:</label></td>
                 <td>
                     <select id="sexe" name="sexe">
+                        <option value="<?php echo $sexe ?>"><?php echo $sexe ?></option>
                         <option value="Masculin">Masculin</option>
                         <option value="Féminin">Féminin</option>
                     </select>
@@ -144,6 +146,7 @@ if ($rep) {
                 <td><label for="Situationf">Situation familiale :</label></td>
                 <td>
                     <select id="Situationf" name="Situationf">
+                        <option value="<?php echo $sitfam ?>"><?php echo $sitfam ?></option>
                         <option value="célibataire">Célibataire</option>
                         <option value="marié">Marié</option>
                         <option value="divorcé">Divorcé</option>

@@ -58,9 +58,10 @@ $nident = '';
     $gsm = $_POST['gsm'];
     $email = $_POST['email'];
     $nident = $_POST['nident'];
-    $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `n°gsm`, `email`) 
-            VALUES ('$nom','$prenom','$nident','$pprenom','$pnom','$sexe','$sitfam','$ddn','$ldn','$gsm','$email')";
-    echo $sql;
+    $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`,
+         `dnaissance`, `lnaissance`, `ngsm`, `email`, `idsj`, `idcc`, `idtype`) 
+            VALUES ('$nom','$prenom','$nident','$pprenom','$pnom','$sexe','$sitfam','$ddn','$ldn','$gsm','$email', 4, 2, 'A_120')";
+    //echo $sql;
     $rep = mysqli_query($connect, $sql);
 
     if ($rep) {
@@ -110,6 +111,7 @@ $nident = '';
     <input type="text" id="email" name="email" value='<?php echo $email; ?>' required><br>
 
     <input type="submit" value="Valider" name="insert">
+    <a href="./rechercheclient.html.php">Quiter</a>
   </form>
 
 </body>

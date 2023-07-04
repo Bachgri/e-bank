@@ -101,9 +101,7 @@ $u = null;
         var listeCatClt = document.getElementById("listecatclt");
         var listeTypeClt = document.getElementById("listetypeclt");
         var listeFormeJuridique = document.getElementById("listefj");
-
         var selectedCatClt = listeCatClt.options[listeCatClt.selectedIndex].value;
-
         // Réinitialiser les listes 
         // per phys || entrepr indiv
         if (selectedCatClt === "1" || selectedCatClt === "3") {
@@ -117,7 +115,6 @@ $u = null;
           document.getElementById('listetypeid1').style.display = 'none';
           document.getElementById('listetypeid').style.display = 'inline';
           document.getElementById('listetypeidL').style.display = 'inline';
-
         } else if (selectedCatClt === "2") {
           // Afficher la liste de forme juridique 1 
           document.getElementById('listetypeclt').style.display = 'none';
@@ -196,8 +193,7 @@ $u = null;
     </table>
     <a href="./createClientMineur.php">Crée Client mineur</a>
 <?php } else {
-            // echo "Client n'existe pas, cliquez pour en créer un: <a href='./createClient.php'>Créer un client</a>";
-
+            echo "Client n'existe pas, cliquez pour en créer un: <a href='./createClient.php'>Créer un client</a>";
           }
         }
       }

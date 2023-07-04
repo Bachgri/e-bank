@@ -76,7 +76,7 @@ $u = null;
         </div><br>
 
         <div class="search-table-row">
-            <label for="listetypeidL" style="display: none;">Type identifiant</label>
+            <label id="listetypeidL" for="listetypeidL" style="display: none;">Type identifiant</label>
             <select id="listetypeid" name="listetypeid" style="display: none;">
                 <option value="0">_ _ _ selectionnez _ _ _</option>
                 <option value="1">CIN</option>
@@ -100,9 +100,7 @@ $u = null;
                 var listeCatClt = document.getElementById("listecatclt");
                 var listeTypeClt = document.getElementById("listetypeclt");
                 var listeFormeJuridique = document.getElementById("listefj");
-
                 var selectedCatClt = listeCatClt.options[listeCatClt.selectedIndex].value;
-
                 // Réinitialiser les listes 
                 // per phys || entrepr indiv
                 if (selectedCatClt === "1" || selectedCatClt === "3") {
@@ -112,9 +110,10 @@ $u = null;
                     document.getElementById('listefjL').style.display = 'none';
                     document.getElementById('listefj1').style.display = 'none';
                     document.getElementById('listefj1L').style.display = 'none';
-                    document.getElementById('listetypeid1L').style.display = 'inline';
-                    document.getElementById('listetypeid1').style.display = 'inline';
-
+                    document.getElementById('listetypeid1L').style.display = 'none';
+                    document.getElementById('listetypeid1').style.display = 'none';
+                    document.getElementById('listetypeid').style.display = 'inline';
+                    document.getElementById('listetypeidL').style.display = 'inline';
                 } else if (selectedCatClt === "2") {
                     // Afficher la liste de forme juridique 1 
                     document.getElementById('listetypeclt').style.display = 'none';
@@ -127,6 +126,9 @@ $u = null;
                     document.getElementById('listetypeid1L').style.display = 'inline';
                     document.getElementById('listetypeid1').style.display = 'inline';
 
+                    document.getElementById('listetypeid').style.display = 'none';
+                    document.getElementById('listetypeidL').style.display = 'none';
+
                 } else if (selectedCatClt === "4") {
                     document.getElementById('listetypeclt').style.display = 'none';
                     document.getElementById('listetypecltL').style.display = 'none';
@@ -136,6 +138,9 @@ $u = null;
                     document.getElementById('listefj1L').style.display = 'inline';
                     document.getElementById('listetypeid1L').style.display = 'inline';
                     document.getElementById('listetypeid1').style.display = 'inline';
+
+                    document.getElementById('listetypeid').style.display = 'none';
+                    document.getElementById('listetypeidL').style.display = 'none';
                 }
             }
         </script>

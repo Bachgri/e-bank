@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2023 at 12:14 AM
+-- Generation Time: Jul 04, 2023 at 07:56 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -76,6 +76,27 @@ INSERT INTO `categorie_client` (`codcatcl`, `libcatcl`, `categuic`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categori_compte`
+--
+
+CREATE TABLE `categori_compte` (
+  `idccmpt` int(11) NOT NULL,
+  `libelccmpt` char(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `categori_compte`
+--
+
+INSERT INTO `categori_compte` (`idccmpt`, `libelccmpt`) VALUES
+(1, 'Compte chèque'),
+(2, 'Compte CEN'),
+(3, 'Compte d\'epargne scolaire'),
+(4, 'Compte inteme');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `clients`
 --
 
@@ -102,9 +123,14 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`numclt`, `nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `ngsm`, `email`, `idcc`, `idtype`, `idsj`) VALUES
-(1023456, 'ALi', 'LACHGAR', 'C_753', 'HAMMOU', 'Kenza ELYAKOUTI', 'Masculin', 'célibataire', '2000-05-08', 'Rabat', 658126935, 'alielhachimi@gmail.com', 2, 'A_120', 3),
+(1, 'ALi', 'LACHGAR', 'C_753', 'HAMMOU', 'Kenza ELYAKOUTI', 'Masculin', 'célibataire', '2000-05-08', 'Rabat', 658126935, 'alielhachimi@gmail.com', 2, 'A_120', 3),
 (1023457, 'oualid', 'lachgar', 'PA253', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com', 0, '', 0),
-(1023460, 'oualid', 'lachgar', 'PA2535491', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com', 0, '', 0);
+(1023460, 'oualid', 'lachgar', 'PA2535491', 'lachgar', 'ali', 'Masculin', 'célibataire', '2001-05-22', 'TINGHIR', 622115470, 'oualidlachgar@gmail.com', 0, '', 0),
+(1023468, 'ha', 'jar', 'PA253', 'jar', 'ha', 'Féminin', 'célibataire', '2001-05-22', 'rabat', 68981653, 'ohzjekjz', 0, '', 0),
+(1023469, 'ou', 'lid', 'C_754', 'lid', 'oi', 'Masculin', 'marié', '2001-05-22', 'ooo', 457812458, 'pzeifpozefi', 2, 'A_120', 4),
+(1023470, 'ali', 'min', 'C_753', 'cc', 'ali', 'Masculin', 'célibataire', '2023-07-03', 'cc', 0, 'cc', 0, '', 4),
+(1023471, 'aa', 'aa', 'aa', 'aa', 'aa', 'Masculin', 'célibataire', '2023-07-03', 'aa', 0, 'aa', 2, 'A_120', 3),
+(1023475, 'bb', 'bb', 'bb', 'bb', 'bb', 'Masculin', 'célibataire', '2023-07-03', 'bb', 0, 'bb', 2, 'A_120', 4);
 
 -- --------------------------------------------------------
 
@@ -113,13 +139,25 @@ INSERT INTO `clients` (`numclt`, `nom`, `perom`, `numidentifiant`, `prenomper`, 
 --
 
 CREATE TABLE `comptes` (
-  `numcmpt` int(11) NOT NULL,
-  `etatcmpt` int(11) NOT NULL,
-  `catcmpt` int(11) NOT NULL,
-  `souscat` int(11) NOT NULL,
-  `intitule` int(11) NOT NULL,
-  `idclientprinc` int(11) NOT NULL
+  `ncmpt` int(11) NOT NULL,
+  `devise` char(20) NOT NULL,
+  `intitulec` char(25) NOT NULL,
+  `solde` float NOT NULL,
+  `date` date NOT NULL,
+  `idclient` int(11) NOT NULL,
+  `idcatcompt` int(11) NOT NULL,
+  `idsouscatcompt` int(11) NOT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comptes`
+--
+
+INSERT INTO `comptes` (`ncmpt`, `devise`, `intitulec`, `solde`, `date`, `idclient`, `idcatcompt`, `idsouscatcompt`, `id`) VALUES
+(1, 'MAD', 'COMPTE OUALID', 200, '0000-00-00', 1, 1, 1, 1),
+(787, '78', 'ikhan', 1350, '2001-02-05', 787, 2, 2, 3),
+(159753, '££', '///', 0, '2023-08-08', 159, 2, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -160,6 +198,42 @@ INSERT INTO `forme_juridique` (`codfj`, `libelfj`) VALUES
 (9, 'Etablissement public administr'),
 (10, 'Cercle et foyer militaire'),
 (11, 'Autres etablissement public');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `operation financiere`
+--
+
+CREATE TABLE `operation financiere` (
+  `idver` int(11) NOT NULL,
+  `idclient` int(11) NOT NULL,
+  `idrem` int(11) NOT NULL,
+  `soldever` float NOT NULL,
+  `datever` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `agence` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `operation financiere`
+--
+
+INSERT INTO `operation financiere` (`idver`, `idclient`, `idrem`, `soldever`, `datever`, `agence`) VALUES
+(1, 787, 1023457, 150, '2023-07-04 17:04:32', 'rabat'),
+(2, 787, 1023457, 150, '2023-06-20 23:00:12', ''),
+(3, 787, 1023457, 150, '2023-06-20 23:01:08', ''),
+(4, 1, 1023457, 154999000, '2023-07-04 16:46:12', ''),
+(5, 1, 1023457, 376, '2023-07-04 16:48:46', ''),
+(6, 1, 1023457, 200, '2023-07-04 16:49:19', ''),
+(7, 1, 1023457, 1000, '2023-07-04 16:57:22', ''),
+(8, 1, 1023457, 1000, '2023-07-04 17:04:37', 'rabat'),
+(9, 1, 1023457, 1000, '2023-07-04 17:14:58', ''),
+(10, 1, 1023457, 1000, '2023-07-04 17:16:32', ''),
+(11, 1, 1023457, 150, '2023-07-04 17:17:27', ''),
+(12, 1, 1023457, 150, '2023-07-04 17:19:29', ''),
+(13, 1, 1023457, 100, '2023-07-04 17:22:54', 'RABAT'),
+(14, 1, 1023457, 250, '2023-07-04 17:25:20', 'Salé'),
+(15, 1, 1023457, 50, '2023-07-04 17:26:47', 'Tinghir');
 
 -- --------------------------------------------------------
 
@@ -206,6 +280,26 @@ INSERT INTO `situation_juridique` (`codsitju`, `libesitju`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sous_cat_comptes`
+--
+
+CREATE TABLE `sous_cat_comptes` (
+  `idsccmpt` int(11) NOT NULL,
+  `libelsccmpt` char(35) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sous_cat_comptes`
+--
+
+INSERT INTO `sous_cat_comptes` (`idsccmpt`, `libelsccmpt`) VALUES
+(1, 'Compte chèque personne physique'),
+(2, 'Compte cheque EMploye BAM'),
+(3, 'Compte DH convertible personne');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `type_client`
 --
 
@@ -243,7 +337,7 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`codutil`, `matricule`, `nomutil`, `password`, `statut`, `codrole`, `codagc`) VALUES
-(100, 'abc_100', 'Mohammed Lachgar', '65af9e9e085bd79f8458b320d1b5f2ea', 'O', 1, 12345),
+(100, 'abc_100', 'Mohammed Lachgar', 'f899139df5e1059396431415e770c6dd', 'O', 1, 12345),
 (101, 'abc_101', ' Karim LZRAK', '38b3eff8baf56627478ec76a704e9b52', 'O', 2, 12346);
 
 --
@@ -272,8 +366,13 @@ ALTER TABLE `categorie_client`
 -- Indexes for table `clients`
 --
 ALTER TABLE `clients`
-  ADD PRIMARY KEY (`numclt`),
-  ADD UNIQUE KEY `numidentifiant` (`numidentifiant`);
+  ADD PRIMARY KEY (`numclt`);
+
+--
+-- Indexes for table `comptes`
+--
+ALTER TABLE `comptes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `contrat ouverture`
@@ -286,6 +385,12 @@ ALTER TABLE `contrat ouverture`
 --
 ALTER TABLE `forme_juridique`
   ADD PRIMARY KEY (`codfj`);
+
+--
+-- Indexes for table `operation financiere`
+--
+ALTER TABLE `operation financiere`
+  ADD PRIMARY KEY (`idver`);
 
 --
 -- Indexes for table `roles`
@@ -319,7 +424,13 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `numclt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1023463;
+  MODIFY `numclt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1023476;
+
+--
+-- AUTO_INCREMENT for table `comptes`
+--
+ALTER TABLE `comptes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `contrat ouverture`
@@ -332,6 +443,12 @@ ALTER TABLE `contrat ouverture`
 --
 ALTER TABLE `forme_juridique`
   MODIFY `codfj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `operation financiere`
+--
+ALTER TABLE `operation financiere`
+  MODIFY `idver` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

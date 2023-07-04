@@ -58,8 +58,9 @@ $nident = $_SESSION['clientId']; //= $row['numidentifiant'];;
         $gsm = $_POST['gsm'];
         $email = $_POST['email'];
         //$nident = $_POST['nident'];
-        $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, `dnaissance`, `lnaissance`, `ngsm`, `email`) 
-            VALUES ('$nom','$prenom','$nident','$pprenom','$pnom','$sexe','$sitfam','$ddn','$ldn','$gsm','$email')";
+        $sql = "INSERT INTO `clients`(`nom`, `perom`, `numidentifiant`, `prenomper`, `nomprenommer`, `sexe`, `situationf`, 
+                    `dnaissance`, `lnaissance`, `ngsm`, `email`, `idsj`, `idcc`, `iidtype`) 
+            VALUES ('$nom','$prenom','$nident','$pprenom','$pnom','$sexe','$sitfam','$ddn','$ldn','$gsm','$email', 3, 2, 'A_120')";
         //echo $sql;
         $rep = mysqli_query($connect, $sql);
 

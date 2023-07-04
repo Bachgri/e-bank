@@ -33,6 +33,7 @@ include('./Inc/db/connexion.php');
       }
     }
   }
+
   if (isset($_POST['valider'])) {
     $ncmpt = $_POST['ic'];
     $ncltdis = $_POST['cindist'];
@@ -55,19 +56,24 @@ include('./Inc/db/connexion.php');
           //echo $idclt;
         }
       }
-      $sql = "INSERT INTO `operation financiere` (`idclient`, `idrem`, `soldever`, `datever`) 
-              VALUES ($idclt, $iddist, $solde, CURRENT_TIMESTAMP)";
-      //echo $sql;
+      $sql = "INSERT INTO `operation financiere` (`idclient`, `idrem`, `soldever`, `datever`, `agence`) 
+              VALUES ($idclt, $iddist, " . $_POST['montant'] . ", CURRENT_TIMESTAMP, '" . $_POST['agc'] . "')";
+      echo $sql;
       $rep = mysqli_query($connect, $sql);
       if ($rep) {
         $sql = "UPDATE comptes set solde = solde + $solde where idclient = $iddist";
         //echo $sql;
         $rep = mysqli_query($connect, $sql);
-        $sql = "UPDATE comptes set solde = solde - $solde where idclient = $idclt";
+        $sql = "UPDATE comptes set solde = solde - " . $_POST['montant'] . " where idclient = $idclt";
+        //echo $sql;
         //echo $sql;
         $rep = mysqli_query($connect, $sql);
-
+        $sql = "SELECT * FROM `operation financiere`  ORDER by idver DESC limit 1 ";
+        $rep = mysqli_query($connect, $sql);
+        $data = $rep->fetch_assoc();
+        $idver = $data['idver'];
         echo "Success! Perform any additional actions after the operation is successfully inserted.";
+        header("location:./validationversement.html.php?idv=$idver");
       } else {
         echo "Error occurred. Handle the error appropriately.";
       }
@@ -123,8 +129,8 @@ include('./Inc/db/connexion.php');
       </tr>
     </table>
     <input type="submit" value="Valider" name="valider">
-    <input type="submit" value="Quitter">
-    <input type="text" name="idclt" value="<?php if ($idclt != '') echo $idclt ?>" id="">
+    <button><a href="./getops.php">Quitter</a></button>
+    <!-- <input type="text" name="idclt" value="php if ($idclt != '') echo $idclt ?>" id=""> -->
   </form>
 
 </body>
